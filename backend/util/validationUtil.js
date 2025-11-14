@@ -45,6 +45,25 @@ const registrationSchema = Joi.object({
   }),
 });
 
+const loginSchema = Joi.object({
+  email: Joi.string()
+    .trim()
+    .email({
+      minDomainSegments: 2,
+      tlds: { allow: ["com", "net", "org", "in", "co"] },
+    })
+    .required()
+    .messages({
+      "string.empty": "Email is required.",
+      "string.email": "Please enter a valid email address.",
+    }),
+
+  password: Joi.string().min(8).required().messages({
+    "string.empty": "Password is required.",
+    "string.min": "Password must be at least 8 characters long.",
+  }),
+});
+
 export function validateRegistration(userData) {
   // Use the schema to validate the data
   const { error } = registrationSchema.validate(userData, {
@@ -53,6 +72,23 @@ export function validateRegistration(userData) {
 
   if (error) {
     // If there are validation errors, return them.
+    return {
+      status: "error",
+      message: "Validation failed",
+      details: error.details.map((detail) => detail.message),
+    };
+  } else {
+    return null;
+  }
+}
+
+export function validateLoginCred(userData) {
+  // Use the schema to validate the data
+  const { error } = loginSchema.validate(userData, {
+    abortEarly: false,
+  });
+
+  if (error) {
     return {
       status: "error",
       message: "Validation failed",
