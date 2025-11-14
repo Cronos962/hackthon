@@ -9,7 +9,8 @@ import EditReview from './components/edit-review/EditReview'
 const App = () => {
   return (
     <div>
-      <Navbar />
+      <SignUp/>
+      {/* <Navbar /> */}
       {/* <ChangePassword /> */}
       {/* <EditProfile/> */}
       <EditReview/>
