@@ -7,13 +7,15 @@ import ChangePassword from './components/change-password/ChangePassword'
 import EditProfile from './components/edit-profile/EditProfile'
 import EditReview from './components/edit-review/EditReview'
 import ReviewCard from './components/review-card/ReviewCard'
-import CreateReview from './components/create-review/CreateReview'
+import ShareReview from './components/share-review/ShareReview'
+import DeleteReview from './components/delete-review/DeleteReview'
 const App = () => {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       {/* <ReviewCard/> */}
-      <CreateReview/>
+      <ShareReview/>
+      <DeleteReview/>
       {/* <SignUp/> */}
       {/* <Login/> */}
       {/* <ChangePassword /> */}
